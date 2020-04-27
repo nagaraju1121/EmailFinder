@@ -47,7 +47,7 @@ app.post('/find', function(req, res) {
     email_verifier.verify_email(email)
     .then( result => {
         // console.log(result);
-        res.send(result);
+        res.send({...result,email});
         
     })
   })
