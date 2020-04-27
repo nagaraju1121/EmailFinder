@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser')
 var debug = require('debug')('index');
-// const email_verifier = require('email-verifier-node');
+const email_verifier = require('email-verifier-node');
 
 var emailFinder = require('./lib/email-finder');
 
@@ -44,12 +44,12 @@ app.post('/find', function(req, res) {
   emailFinder(data)
   .then(function (email) {
     res.send({email: email});
-    // email_verifier.verify_email(email)
-    // .then( result => {
-    //     // console.log(result);
-    //     res.send(result);
+    email_verifier.verify_email(email)
+    .then( result => {
+        // console.log(result);
+        res.send(result);
         
-    // })
+    })
   })
   .catch(function (err) {
     res.status(500).send(err);
