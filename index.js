@@ -43,13 +43,12 @@ app.post('/find', function(req, res) {
 
   emailFinder(data)
   .then(function (email) {
-    // res.send({email: email});
-    email_verifier.verify_email(email)
-    .then( result => {
-        // console.log(result);
-        res.send({...result,email});
+    res.send({email: email});
+    // email_verifier.verify_email(email)
+    // .then( result => {
+    //     res.send({...result,email});
         
-    })
+    // })
   })
   .catch(function (err) {
     res.status(500).send(err);
